@@ -12,12 +12,12 @@ let mongodb_url = 'mongodb://hesbonangwenyi123:Test12345!@gallery-shard-00-00.wc
 let dbName = 'darkroom';
 
 // Connect to MongoDB
-mongoose.connect(`${mongodb_url}`, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongodb_url, { dbName })
     .then(() => {
         console.log('Database connected successfully');
     })
     .catch((err) => {
-        console.error('Error connecting to MongoDB:', err);
+        console.log('Error connecting to MongoDB:', err);
     });
 
 // Initializing the app
@@ -29,7 +29,7 @@ app.set('view engine', 'ejs');
 // Set up the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// body parser middleware
+// Body parser middleware
 app.use(express.json());
 
 app.use('/', index);
